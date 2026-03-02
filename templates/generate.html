@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Medical Serial</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Top Navigation -->
+    <div style="text-align:right; margin-bottom:15px;">
+        <a href="/profile" style="margin-right:15px; text-decoration:none;">Profile</a>
+        <a href="/logout" style="color:red; text-decoration:none;">Logout</a>
+    </div>
+
+    <h1>Generate Medical Serial</h1>
+    <p>Create a new serialized medicine code</p>
+
+    <form method="POST" class="form">
+
+        <input type="text" 
+               name="med_id" 
+               placeholder="Medical Serial ID" 
+               required>
+
+        <input type="text" 
+               name="name" 
+               placeholder="Medicine Name (e.g., Paracetamol)" 
+               required>
+
+        <input type="text" 
+               name="brand" 
+               placeholder="Brand Name" 
+               required>
+
+        <label style="text-align:left;">Manufactured Date</label>
+        <input type="date" 
+               name="mfg_date" 
+               required>
+
+        <label style="text-align:left;">Expiry Date</label>
+        <input type="date" 
+               name="expiry" 
+               required>
+
+        <button type="submit" class="button">
+            Generate DataMatrix
+        </button>
+
+    </form>
+
+    <br>
+    <a href="/" style="text-decoration:none;">← Back to Home</a>
+
+</div>
+
+</body>
+</html>

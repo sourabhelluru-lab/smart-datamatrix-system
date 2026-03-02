@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DataMatrix Generated</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>DataMatrix Generated Successfully</h1>
+    <p>Your unique medicine code is ready</p>
+
+    <div style="margin-top: 20px;">
+        <img src="{{ img_path }}" alt="DataMatrix Code" style="background: white; padding: 15px; border-radius: 15px;">
+    </div>
+
+    <br><br>
+
+    <a href="/generate" class="button">Generate Another</a>
+
+    <br><br>
+
+    <a href="/" style="color: #cfd8dc; text-decoration: none;">
+        ← Back to Home
+    </a>
+</div>
+
+</body>
+</html>

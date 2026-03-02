@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Medicine Verification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Medicine Verified ✅</h1>
+    <p>Authentic Product Information</p>
+
+    <div style="margin-top: 20px; text-align: left; line-height: 1.8;">
+        <p><strong>Medicine ID:</strong> {{ request.path.split('/')[-1] }}</p>
+        <p><strong>Medicine Name:</strong> {{ med.name }}</p>
+        <p><strong>Brand:</strong> {{ med.brand }}</p>
+        <p><strong>Manufactured Date:</strong> {{ med.mfg_date }}</p>
+        <p><strong>Expiry Date:</strong> {{ med.expiry }}</p>
+        {% if med.status == "expired" %}
+    <p style="color: red; font-weight: bold;">
+        ❌ This medicine is EXPIRED.
+    </p>
+{% else %}
+    <p style="color: green; font-weight: bold;">
+        ✅ This medicine is VALID.
+    </p>
+{% endif %}
+    </div>
+
+    <br>
+
+    {% if extra %}
+        <!-- Toggle Button -->
+        <button class="button" onclick="toggleInfo()" 
+                style="background: linear-gradient(90deg,#ff6a00,#ee0979);">
+            Show Additional Information
+        </button>
+
+        <!-- Hidden Additional Info Section -->
+        <div id="extraInfo" 
+             style="display:none; margin-top:20px; text-align:left; line-height:1.8;">
+
+            <p><strong>Composition:</strong> {{ extra.composition }}</p>
+            <p><strong>Usage:</strong> {{ extra.usage }}</p>
+            <p><strong>Storage:</strong> {{ extra.storage }}</p>
+            <p><strong>Warning:</strong> {{ extra.warning }}</p>
+            <p><strong>MRP:</strong> {{ extra.mrp }}</p>
+
+        </div>
+    {% endif %}
+
+    <br><br>
+
+    <a href="/" style="color: #cfd8dc; text-decoration: none;">
+        ← Back to Home
+    </a>
+</div>
+
+<script>
+function toggleInfo() {
+    var x = document.getElementById("extraInfo");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>

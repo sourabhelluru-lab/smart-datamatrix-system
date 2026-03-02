@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manufacturer Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <div style="text-align:right;">
+        <a href="/logout" style="color:red; text-decoration:none;">Logout</a>
+    </div>
+
+    <h1>Dashboard</h1>
+    <p>Logged in as: <strong>{{ username }}</strong></p>
+    <p>Total Serials Created: <strong>{{ total }}</strong></p>
+
+    <hr>
+
+    <h3>Last 10 Created Serials</h3>
+
+    {% if records %}
+        <table style="width:100%; text-align:left; margin-top:20px;">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Created At</th>
+                <th>Verify</th>
+            </tr>
+
+            {% for row in records %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[5] }}</td>
+                <td>
+                    <a href="/verify/{{ row[0] }}">View</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No records found.</p>
+    {% endif %}
+
+    <br><br>
+    <a href="/generate">Generate New Medical Serial</a>
+
+</div>
+
+</body>
+</html>

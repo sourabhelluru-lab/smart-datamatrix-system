@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scan Medicine Code</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://unpkg.com/@zxing/library@latest"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Scan Medicine DataMatrix</h1>
+    <p>Allow camera access and scan the code</p>
+
+    <video id="video" width="300" height="300" style="border-radius: 15px;"></video>
+
+    <br><br>
+
+    <a href="/" style="color: #cfd8dc; text-decoration: none;">
+        ← Back to Home
+    </a>
+</div>
+
+<script>
+    const codeReader = new ZXing.BrowserMultiFormatReader();
+
+    codeReader.decodeFromVideoDevice(null, 'video', (result, err) => {
+        if (result) {
+            window.location.href = result.text;
+        }
+    });
+</script>
+
+</body>
+</html>
