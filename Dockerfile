@@ -3,7 +3,7 @@ FROM python:3.11-slim
 
 # Install system dependencies for pylibdmtx
 RUN apt-get update && apt-get install -y \
-    libdmtx0a \
+    libdmtx0t64 \
     libdmtx-dev \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
