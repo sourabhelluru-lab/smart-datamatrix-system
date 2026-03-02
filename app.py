@@ -139,7 +139,8 @@ def generate_page():
         conn.commit()
         conn.close()
 
-        data = f"http://127.0.0.1:8000/verify/{med_id}"
+        # 🔥 IMPORTANT: Production URL
+        data = f"https://smart-datamatrix-system.onrender.com/verify/{med_id}"
 
         encoded = encode(data.encode("utf-8"))
 
@@ -188,7 +189,7 @@ def verify(med_id):
         "created_at": row[5]
     }
 
-    # -------- Expiry Auto Validation --------
+    # Expiry Validation
     today = datetime.today().date()
     expiry_date = datetime.strptime(med["expiry"], "%Y-%m-%d").date()
 
@@ -202,7 +203,7 @@ def verify(med_id):
 
     return render_template("verify.html", med=med, extra=extra)
 
-# ---------------- PROFILE DASHBOARD ----------------
+# ---------------- PROFILE ----------------
 @app.route("/profile")
 def profile():
 
@@ -241,5 +242,7 @@ def profile():
 def scan():
     return render_template("scan.html")
 
+# ---------------- MAIN ----------------
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000, debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
